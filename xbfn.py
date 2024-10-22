@@ -11,6 +11,9 @@ def print_banner():
     banner = (
         "\n"
         "机场节点"
+        "\n"
+        "全选复制粘贴到v2ray或者其他应用"
+        "\n"
     )
     print(banner)
 
