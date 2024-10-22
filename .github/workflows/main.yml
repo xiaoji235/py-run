@@ -1,9 +1,9 @@
 name: 机场脚本更新
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
-
+  push:
+    branches: [ master ]
+      
 jobs:
   run-script-and-commit:
     runs-on: ubuntu-latest
