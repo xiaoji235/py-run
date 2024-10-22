@@ -1,0 +1,41 @@
+name: Run Python Script
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run script
+      run: python trojan.py > output.txt
+
+    - name: Save output
+      run: echo "${{ steps.run-script.outputs.stdout }}" > output.txt
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Add output file
+        commit_user_name: GitHub Action
+        commit_user_email: action@github.com
+        branch: ${{ github.ref }}
+
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
