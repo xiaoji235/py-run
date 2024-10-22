@@ -1,41 +1,32 @@
-name: Run Python Script
+name: 机场脚本更新
 
 on:
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  run-script:
+  run-script-and-commit:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.9'
 
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      run: 
+        pip install requests
+        pip install base64
+        pip install json
+        pip install pyaes
+        pip install binascii
 
-    - name: Run script
-      run: python trojan.py > output.txt
+    - name: 移除旧存档
+      run: rm -f trojan.txt
 
-    - name: Save output
-      run: echo "${{ steps.run-script.outputs.stdout }}" > output.txt
-
-    - name: Commit and push changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Add output file
-        commit_user_name: GitHub Action
-        commit_user_email: action@github.com
-        branch: ${{ github.ref }}
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: 运行py脚本
+      run: python  trojan.py > trojan.txt
