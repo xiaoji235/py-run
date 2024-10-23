@@ -2,7 +2,8 @@ name: 机场脚本更新
 
 on:
   push:
-    branches: [ master ]
+    paths:
+     -'trojan.py'
       
 jobs:
   run-script-and-commit:
