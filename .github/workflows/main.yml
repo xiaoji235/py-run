@@ -35,7 +35,7 @@ jobs:
     - name: Checkout py-run Repository
       uses: actions/checkout@v2
       with:
-        repository: https://xiaoji235/py-run
+        repository: https://github.com/xiaoji235/py-run
         token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         path: py-run
 
