@@ -19,7 +19,6 @@ jobs:
       run: |
         # 如果您的脚本需要额外的依赖，可以在这里安装
         # 例如: 
-        pip install base64
         pip install pyaes
         pip install requests
 
