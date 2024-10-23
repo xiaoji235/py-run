@@ -1,4 +1,4 @@
-name: Run Trojan Script
+name: 机场节点
 
 on:
   schedule:
