@@ -34,15 +34,18 @@ jobs:
            rm -f vpn/txt/ss.txt || true
            rm -f vpn/txt/vpn.txt || true
       
-    - name: 运行并输出结果
+    - name: 运行并输出结果trojan
       run: python vpn/py/trojan.py > trojan.txt
+      
+    - name: 运行并输出结果ss
            python vpn/py/ss.py > ss.txt
 
     - name: 创建合并文本
       run: touch vpn/txt/vpn.txt
            
     - name: 合并结果
-      run: cat trojan.txt ss.txt > vpn/txt/vpn.txt
+      run: cat trojan.txt > vpn/txt/vpn.txt
+           cat ss.txt > vpn/txt/vpn.txt
            
     - name: Commit and push if there are changes
       run: |
