@@ -27,6 +27,7 @@ jobs:
 
     - name: 运行py脚本
       run: python trojan.py > trojan.txt
+           python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
 
     - name: 删除trojan.txt文件（如果存在的话）
       run: rm -f trojan.txt || true
