@@ -30,16 +30,16 @@ jobs:
     #       python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
 
     - name: 删除txt文件（如果存在的话）
-      run: rm -f ./vpn/txt/trojan.txt || true
-           rm -f ./vpn/txt/ss.txt || true
-           rm -f ./vpn/txt/vpn.txt || true
+      run: rm -f vpn/txt/trojan.txt || true
+           rm -f vpn/txt/ss.txt || true
+           rm -f vpn/txt/vpn.txt || true
       
     - name: 运行并输出结果
-      run: python ./vpn/py/trojan.py > trojan.txt
-           python ./vpn/py/ss.py > ss.txt
+      run: python vpn/py/trojan.py > trojan.txt
+           python vpn/py/ss.py > ss.txt
 
     - name: 创建合并文本
-      run: touch ./vpn/txt/vpn.txt
+      run: touch vpn/txt/vpn.txt
            
     - name: 合并结果
       run: cat trojan.txt ss.txt > vpn.txt
