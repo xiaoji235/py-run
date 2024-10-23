@@ -31,13 +31,7 @@ jobs:
 
 
 
-      # 仓库
-    - name: Checkout py-run Repository
-      uses: actions/checkout@v2
-      with:
-        repository: https://github.com/xiaoji235/py-run
-        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        path: py-run
+
 
       # 使用 API 获取文件列表并下载合并
     - name: Fetch and Merge TXT Files
