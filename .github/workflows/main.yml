@@ -1,33 +1,41 @@
-name: 机场脚本更新
+name: Run Trojan Script
 
-on:
-  push:
-    paths:
-     -'trojan.py'
-      
+on: [push, workflow_dispatch]
+
 jobs:
-  run-script-and-commit:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        python-version: '3.9'
+        python-version: '3.x'
 
     - name: Install dependencies
-      run: 
-        pip install requests
+      run: |
+        # 如果您的脚本需要额外的依赖，可以在这里安装
+        # 例如: 
         pip install base64
-        pip install json
         pip install pyaes
-        pip install binascii
+        pip install requests
 
-    - name: 移除旧存档
-      run: rm -f trojan.txt
+    - name: Run trojan.py script
+      run: python trojan.py > trojan.txt
 
-    - name: 运行py脚本
-      run: python  trojan.py > trojan.txt
+    - name: Delete existing trojan.txt (if it exists)
+      run: rm -f trojan.txt || true
+
+    - name: Recreate trojan.txt with new content
+      run: python trojan.py > trojan.txt
+
+    - name: Commit and push if there are changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add trojan.txt
+        git commit -m "Update trojan.txt with latest results" || exit 0
+        git push
