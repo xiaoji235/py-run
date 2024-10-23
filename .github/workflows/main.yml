@@ -31,17 +31,20 @@ jobs:
 
     - name: 删除trojan.txt文件（如果存在的话）
       run: rm -f ./vpn/txt/trojan.txt || true
-
-    - name: 更改权限
-      run: chmod +x ./vpn/py/ss.py
+           rm -f ./vpn/txt/ss.txt || true
+           rm -f ./vpn/txt/vpn.txt || true
       
-    - name: 运行并保存输出结果
-      run: python ./vpn/py/trojan.py && ./vpn/py/ss.py > ./vpn/txt/trojan.txt
-
+    - name: 运行并输出结果
+      run: python ./vpn/py/trojan.py > ./vpn/txt/trojan.txt
+           python ./vpn/py/ss.py > ./vpn/txt/ss.txt
+           
+    - name: 合并结果
+      run: cat ./vpn/txt/trojan.txt ./vpn/txt/ss.txt > vpn.txt
+           
     - name: Commit and push if there are changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add  ./vpn/txt/trojan.txt
+        git add  ./vpn/txt/vpn.txt
         git commit -m "Update trojan.txt with latest results" || exit 0
         git push
