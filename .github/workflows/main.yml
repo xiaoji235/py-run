@@ -13,26 +13,27 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
+    - name: 安装 Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
+    - name: 依赖
       run: |
         # 如果您的脚本需要额外的依赖，可以在这里安装
         # 例如: 
         pip install pyaes
         pip install requests
 
-    - name: Run trojan.py script
+    - name: 运行py脚本
       run: python trojan.py > trojan.txt
 
-    - name: Delete existing trojan.txt (if it exists)
+    - name: 删除trojan.txt文件（如果存在的话）
       run: rm -f trojan.txt || true
 
-    - name: Recreate trojan.txt with new content
+    - name: 重新创建 trojan.txt
       run: python trojan.py > trojan.txt
+           python /vpn/py/ss.py > /vpn/txt/trojan.txt
 
     - name: Commit and push if there are changes
       run: |
