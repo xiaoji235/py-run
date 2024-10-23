@@ -28,6 +28,48 @@ jobs:
     - name: Run trojan.py script
       run: python trojan.py > trojan.txt
 
+
+
+
+      # 仓库
+    - name: Checkout py-run Repository
+      uses: actions/checkout@v2
+      with:
+        repository: https://xiaoji235/py-run
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        path: py-run
+
+      # 使用 API 获取文件列表并下载合并
+    - name: Fetch and Merge TXT Files
+      env:
+       GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      run: |
+          # 创建临时目录来存储下载的文件
+          mkdir tmp
+          cd tmp
+          
+          # 使用 GitHub API 获取文件列表
+          FILES_JSON=$(curl -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/Barabama/FreeNodes/contents/nodes")
+          
+          # 解析 JSON 并下载 .txt 文件
+          echo "$FILES_JSON" | jq -r '.[] | select(.name | endswith(".txt")) | .download_url' | while read
+          do
+            curl -sL "$file_url" -o "$(basename $file_url)"
+          done
+          
+          # 合并所有下载的 .txt 文件
+          cat *.txt > merged_files.txt
+          
+          # 将合并后的文件复制到仓库中
+          cp merged_files.txt https://github.com/xiaoji235/py-run/trojan.txt
+
+
+
+
+
+      
+
     - name: Delete existing trojan.txt (if it exists)
       run: rm -f trojan.txt || true
 
