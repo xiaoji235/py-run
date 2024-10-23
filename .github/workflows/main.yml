@@ -25,16 +25,16 @@ jobs:
         pip install pyaes
         pip install requests
 
-    - name: 运行py脚本
-      run: python trojan.py > trojan.txt
-           python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
+    # - name: 运行py脚本
+    #  run: python trojan.py > trojan.txt
+    #       python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
 
     - name: 删除trojan.txt文件（如果存在的话）
       run: rm -f trojan.txt || true
 
     - name: 重新创建 trojan.txt
-      run: python trojan.py > trojan.txt
-           python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
+      #run: python trojan.py > trojan.txt
+      run: python ./vpn/py/ss.py > trojan.txt
 
     - name: Commit and push if there are changes
       run: |
