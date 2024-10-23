@@ -47,8 +47,8 @@ jobs:
             "https://api.github.com/repos/Barabama/FreeNodes/contents/nodes")
           
           # 解析 JSON 并下载 .txt 文件
-          echo "$FILES_JSON" | jq -r '.[] | select(.name | endswith(".txt")) | .download_url' | while read
-          do
+          TXT_URLS=$(echo "$FILES_JSON" | jq -r '.[] | select(.name | end("txt")) | .download_url')
+          for file_url in $TXT_URLS;do
             curl -sL "$file_url" -o "$(basename $file_url)"
           done
           
