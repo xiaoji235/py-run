@@ -33,7 +33,8 @@ jobs:
       run: rm -f ./vpn/txt/trojan.txt || true
 
     - name: 运行并保存输出结果
-      run: python ./vpn/py/trojan.py && ./vpn/py/ss.py > ./vpn/txt/trojan.txt
+      run: chmod +x ./vpn/py/ss.py
+           python ./vpn/py/trojan.py && ./vpn/py/ss.py > ./vpn/txt/trojan.txt
 
     - name: Commit and push if there are changes
       run: |
