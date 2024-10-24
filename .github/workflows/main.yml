@@ -26,13 +26,6 @@ jobs:
         pip install bs4
 
 
-    #- name: 重新创建合并文本
-    #  run: |
-    #    touch vpn/txt/vpn.txt
-    #    touch vpn/txt/fast.txt
-    #    touch vpn/txt/v2.txt
-
-
     - name: 删除vpn文件
       run: |
         rm -f vpn/txt/vpn.txt || ture
@@ -53,9 +46,6 @@ jobs:
         cat vpn/txt/ss.txt vpn/txt/trojan.txt > vpn/txt/fast.txt
         rm -f vpn/txt/trojan.txt
         rm -f vpn/txt/ss.txt
-        date > vpn/txt/vpn.txt
-        date > vpn/txt/fast.txt
-        date > vpn/txt/v2.txt
 
 
     - name: Commit and push if there are changes
