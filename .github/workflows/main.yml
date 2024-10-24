@@ -54,7 +54,7 @@ jobs:
         git config --local user.name "GitHub Action"
         git add -A
         if [[ `git status --porcelain` ]]; then
-          git commit -m "Update VPN files" && git push
+          git commit -m "v2最多，fast较少，vpn为前面两个的整合" && git push
         else
           echo "No changes to commit."
         fi
