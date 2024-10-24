@@ -58,6 +58,6 @@ jobs:
         git init
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A vpn/txt/
+        git add -A
         git commit -m "vpn/txt/" || exit 0
         git push
