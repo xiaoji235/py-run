@@ -15,12 +15,12 @@ day = now.day
 
 # 构建URL列表
 urls = [
-    f"https://v2rayshare.githubrowcontent.com/{year}/{str(month).zfill(2)}/{year}{str(month).zfill(2)}{str(day).zfill(2)}.txt",
-    #f"https://nodev2ray.com/uploads/{year}/{month}/0-{year}{month}{day}.txt",
-    f"https://nodev2ray.com/uploads/{year}/{month}/1-{year}{month}{day}.txt",
-    f"https://nodev2ray.com/uploads/{year}/{month}/2-{year}{month}{day}.txt",
-    f"https://nodev2ray.com/uploads/{year}/{month}/3-{year}{month}{day}.txt",
-    f"https://nodev2ray.com/uploads/{year}/{month}/4-{year}{month}{day}.txt"
+    #f"https://v2rayshare.githubrowcontent.com/{year}/{str(month).zfill(2)}/{year}{str(month).zfill(2)}{str(day).zfill(2)}.txt",
+    f"https://nodev2ray.com/uploads/{year}/{month}/0-{year}{month}{day}.txt",
+    #f"https://nodev2ray.com/uploads/{year}/{month}/1-{year}{month}{day}.txt",
+    #f"https://nodev2ray.com/uploads/{year}/{month}/2-{year}{month}{day}.txt",
+    #f"https://nodev2ray.com/uploads/{year}/{month}/3-{year}{month}{day}.txt",
+    #f"https://nodev2ray.com/uploads/{year}/{month}/4-{year}{month}{day}.txt"
 ]
 
 # 发起请求并打印结果
