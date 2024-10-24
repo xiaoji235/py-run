@@ -38,14 +38,16 @@ jobs:
         python vpn/py/v2.py > vpn/txt/v2.txt
         python vpn/py/ss.py > vpn/txt/ss.txt
         python vpn/py/trojan.py > vpn/txt/trojan.txt
+        python vpn/py/web1.py > vpn/txt/web1.txt
 
         
     - name: 合并结果vpn
       run: |
         cat vpn/txt/ss.txt vpn/txt/trojan.txt vpn/txt/v2.txt > vpn/txt/vpn.txt
-        cat vpn/txt/ss.txt vpn/txt/trojan.txt > vpn/txt/fast.txt
+        cat vpn/txt/ss.txt vpn/txt/trojan.txt vpn/txt/web1.txt > vpn/txt/fast.txt
         rm -f vpn/txt/trojan.txt
         rm -f vpn/txt/ss.txt
+        rm -f vpn/txt/web1.txt
 
 
     - name: Commit and push if there are changes
