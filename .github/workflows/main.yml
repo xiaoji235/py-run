@@ -27,11 +27,11 @@ jobs:
 
 
     - name: 删除vpn文件
-      run: rm -f vpn/txt/vpn.txt || true
+      run: rm -f vpn/txt/vpn.txt
     - name: 删除fast文件
-      run: rm -f vpn/txt/fast.txt || true
+      run: rm -f vpn/txt/fast.txt
     - name: 删除v2文件
-      run: rm -f vpn/txt/v2.txt || true
+      run: rm -f vpn/txt/v2.txt
 
       
     - name: 运行并输出结果v2    #很多节点，不太好用
