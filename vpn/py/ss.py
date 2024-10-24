@@ -29,6 +29,6 @@ for url in urls:
         response = requests.get(url, headers=headers)
         response.raise_for_status()  # 检查请求是否成功
         print(response.text)
-        #print("\n")  # 用分隔线区分每个response内容
+        print("\n")  # 用分隔线区分每个response内容
     except requests.exceptions.RequestException as e:
         print(f"An error occureed:{e}")
