@@ -9,7 +9,7 @@ headers = {
 response = requests.get(url, headers=headers)
 soup = BeautifulSoup(response.text, 'html.parser')
 
-first_title = soup.find_all(class_='title')[1].a['href']
+first_title = soup.find_all(class_='title')[0].a['href']
 #print(first_title)
 new_url = first_title
 response = requests.get(new_url, headers=headers)
