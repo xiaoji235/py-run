@@ -20,35 +20,42 @@ jobs:
 
     - name: 依赖
       run: |
-        # 如果您的脚本需要额外的依赖，可以在这里安装
-        # 例如: 
+        # 各种模块
         pip install pyaes
         pip install requests
         pip install bs4
 
-    # - name: 运行py脚本
-    #  run: python trojan.py > trojan.txt
-    #       python ./vpn/py/ss.py > ./vpn/txt/trojan.txt
 
     - name: 删除txt文件（如果存在的话）
       run: rm -f vpn/txt/trojan.txt || true
            rm -f vpn/txt/ss.txt || true
            rm -f vpn/txt/vpn.txt || true
+           rm -f vpn/txt/fast.txt || true
+           rm -f vpn/txt/more.txt || true
+
       
     - name: 运行并输出结果v2
       run: python vpn/py/v2.py > v2.txt
-
     - name: 运行并输出结果trojan
       run: python vpn/py/trojan.py > trojan.txt
-      
+
+    
     - name: 运行并输出结果ss
       run: python vpn/py/ss.py > ss.txt
 
-    - name: 创建合并文本
+    - name: 创建合并文本vpn
       run: touch vpn/txt/vpn.txt
-           
-    - name: 合并结果
+    - name: 创建合并文本fast
+      run: touch vpn/txt/fast.txt
+    - name: 创建合并文本more
+      run: touch vpn/txt/more.txt
+
+
+    # vpn节点最全，fast连通性测试最快（最少节点）
+    - name: 合并结果vpn
       run: cat ss.txt trojan.txt v2.txt > vpn/txt/vpn.txt
+    - name: 合并结果fast
+      run: cat ss.txt trojan.txt > vpn/txt/fast.txt
            
     - name: Commit and push if there are changes
       run: |
@@ -56,5 +63,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add vpn/txt/vpn.txt
-        git commit -m "vpn/txt/vpn.txt" || exit 0
+        git add vpn/txt/fast.txt
+        git add vpn/txt/more.txt
+        git commit -m "vpn/txt/vpn.txt" "vpn/txt/fast.txt" "vpn/txt/more.txt" || exit 0
         git push
