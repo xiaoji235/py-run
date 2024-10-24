@@ -34,24 +34,25 @@ jobs:
 
       
     - name: 运行并输出结果v2    #很多节点，不太好用
-      run: python vpn/py/v2.py > vpn/txt/v2.txt
-    - name: 运行并输出结果ss
-      run: python vpn/py/ss.py > ss.txt
-    - name: 运行并输出结果trojan
-      run: python vpn/py/trojan.py > trojan.txt
+      run: |
+           python vpn/py/v2.py > vpn/txt/v2.txt
+           python vpn/py/ss.py > ss.txt
+           python vpn/py/trojan.py > trojan.txt
 
 
     - name: 创建合并文本vpn
-      run: touch vpn/txt/vpn.txt
-    - name: 创建合并文本fast
-      run: touch vpn/txt/fast.txt
+      run: |
+           touch vpn/txt/vpn.txt
+           touch vpn/txt/fast.txt
 
 
     # vpn节点最全，fast连通性测试最快（最少节点）
     - name: 合并结果vpn
-      run: cat ss.txt trojan.txt vpn/txt/v2.txt > vpn/txt/vpn.txt
-    - name: 合并结果fast
-      run: cat ss.txt trojan.txt > vpn/txt/fast.txt
+      run: |
+           cat ss.txt trojan.txt vpn/txt/v2.txt > vpn/txt/vpn.txt
+           cat ss.txt trojan.txt > vpn/txt/fast.txt
+           rm -f trojan.txt
+           rm -f ss.txt
            
     - name: Commit and push if there are changes
       run: |
