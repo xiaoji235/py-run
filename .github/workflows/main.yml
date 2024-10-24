@@ -44,7 +44,7 @@ jobs:
       run: touch vpn/txt/vpn.txt
            
     - name: 合并结果
-      run: cat ss.txt trojan.txt > vpn/txt/vpn.txt
+      run: cat -s ss.txt trojan.txt > vpn/txt/vpn.txt
            
     - name: Commit and push if there are changes
       run: |
