@@ -32,18 +32,19 @@ jobs:
            rm -f vpn/txt/fast.txt
            rm -f vpn/txt/v2.txt
 
+
+    - name: 重新创建合并文本
+      run: |
+           touch vpn/txt/vpn.txt
+           touch vpn/txt/fast.txt
+           touch vpn/txt/v2.txt
+           
       
     - name: 运行并输出结果v2    #很多节点，不太好用
       run: |
            python vpn/py/v2.py > vpn/txt/v2.txt
            python vpn/py/ss.py > ss.txt
            python vpn/py/trojan.py > trojan.txt
-
-
-    - name: 创建合并文本vpn
-      run: |
-           touch vpn/txt/vpn.txt
-           touch vpn/txt/fast.txt
 
 
     # vpn节点最全，fast连通性测试最快（最少节点）
