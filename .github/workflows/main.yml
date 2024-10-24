@@ -63,8 +63,6 @@ jobs:
         git init
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add vpn/txt/vpn.txt
-        git add vpn/txt/fast.txt
-        git add vpn/txt/v2.txt
-        git commit -m "vpn/txt/vpn.txt" "vpn/txt/fast.txt" "vpn/txt/v2.txt" || exit 0
+        git add vpn/txt/*
+        git commit -m "vpn/txt/*" || exit 0
         git push
