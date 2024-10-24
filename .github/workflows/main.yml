@@ -28,38 +28,38 @@ jobs:
 
     - name: 删除vpn文件
       run: |
-           rm -f vpn/txt/vpn.txt
-           rm -f vpn/txt/fast.txt
-           rm -f vpn/txt/v2.txt
+        rm -f vpn/txt/vpn.txt
+        rm -f vpn/txt/fast.txt
+        rm -f vpn/txt/v2.txt
 
 
     - name: 重新创建合并文本
       run: |
-           touch vpn/txt/vpn.txt
-           touch vpn/txt/fast.txt
-           touch vpn/txt/v2.txt
-           
-      
+        touch /vpn/txt/vpn.txt
+        touch /vpn/txt/fast.txt
+        touch /vpn/txt/v2.txt
+        
+
     - name: 运行并输出结果v2    #很多节点，不太好用
       run: |
-           python vpn/py/v2.py > vpn/txt/v2.txt
-           python vpn/py/ss.py > ss.txt
-           python vpn/py/trojan.py > trojan.txt
+        python vpn/py/v2.py > /vpn/txt/v2.txt
+        python vpn/py/ss.py > /vpn/txt/ss.txt
+        python vpn/py/trojan.py > / vpn/txt/trojan.txt
+        
 
-
-    # vpn节点最全，fast连通性测试最快（最少节点）
     - name: 合并结果vpn
       run: |
-           cat ss.txt trojan.txt vpn/txt/v2.txt > vpn/txt/vpn.txt
-           cat ss.txt trojan.txt > vpn/txt/fast.txt
-           rm -f trojan.txt
-           rm -f ss.txt
-           
+        cat /vpn/txt/ss.txt /vpn/txt/trojan.txt /vpn/txt/v2.txt > /vpn/txt/vpn.txt
+        cat /vpn/txt/ss.txt /vpn/txt/trojan.txt > /vpn/txt/fast.txt
+
+
     - name: Commit and push if there are changes
       run: |
-        git init
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -A
-        git commit -m "vpn/txt/" || exit 0
-        git push
+        if [[ `git status --porcelain` ]]; then
+          git commit -m "Update VPN files" && git push
+        else
+          echo "No changes to commit."
+        fi
