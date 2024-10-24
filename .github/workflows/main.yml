@@ -34,21 +34,18 @@ jobs:
            rm -f vpn/txt/more.txt || true
 
       
-    - name: 运行并输出结果v2
-      run: python vpn/py/v2.py > v2.txt
+    - name: 运行并输出结果v2    #很多节点，不太好用
+      run: python vpn/py/v2.py > vpn/txt/v2.txt
+    - name: 运行并输出结果ss
+      run: python vpn/py/ss.py > ss.txt
     - name: 运行并输出结果trojan
       run: python vpn/py/trojan.py > trojan.txt
 
-    
-    - name: 运行并输出结果ss
-      run: python vpn/py/ss.py > ss.txt
 
     - name: 创建合并文本vpn
       run: touch vpn/txt/vpn.txt
     - name: 创建合并文本fast
       run: touch vpn/txt/fast.txt
-    - name: 创建合并文本more
-      run: touch vpn/txt/more.txt
 
 
     # vpn节点最全，fast连通性测试最快（最少节点）
@@ -64,6 +61,6 @@ jobs:
         git config --local user.name "GitHub Action"
         git add vpn/txt/vpn.txt
         git add vpn/txt/fast.txt
-        git add vpn/txt/more.txt
-        git commit -m "vpn/txt/vpn.txt" "vpn/txt/fast.txt" "vpn/txt/more.txt" || exit 0
+        git add vpn/txt/v2.txt
+        git commit -m "vpn/txt/vpn.txt" "vpn/txt/fast.txt" "vpn/txt/v2.txt" || exit 0
         git push
