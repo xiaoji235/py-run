@@ -53,6 +53,9 @@ jobs:
         cat vpn/txt/ss.txt vpn/txt/trojan.txt > vpn/txt/fast.txt
         rm -f vpn/txt/trojan.txt
         rm -f vpn/txt/ss.txt
+        date > vpn/txt/vpn.txt
+        date > vpn/txt/fast.txt
+        date > vpn/txt/v2.txt
 
 
     - name: Commit and push if there are changes
