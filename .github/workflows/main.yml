@@ -33,6 +33,10 @@ jobs:
     - name: 删除v2文件
       run: rm vpn/txt/v2.txt|| true
 
+
+    - name: 创建文本v2
+      run: touch vpn/txt/v2.txt
+
       
     - name: 运行并输出结果v2    #很多节点，不太好用
       run: python vpn/py/v2.py > vpn/txt/v2.txt
