@@ -33,11 +33,11 @@ jobs:
         rm -f vpn/txt/v2.txt
 
 
-    - name: 重新创建合并文本
-      run: |
-        touch vpn/txt/vpn.txt
-        touch vpn/txt/fast.txt
-        touch vpn/txt/v2.txt
+    #- name: 重新创建合并文本
+    #  run: |
+    #    touch vpn/txt/vpn.txt
+    #    touch vpn/txt/fast.txt
+    #    touch vpn/txt/v2.txt
         
 
     - name: 运行并输出结果v2    #很多节点，不太好用
