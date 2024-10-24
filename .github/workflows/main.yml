@@ -27,7 +27,7 @@ jobs:
 
 
     - name: 删除txt文件（如果存在的话）
-      run: rm -f vpn/txt/trojan.txt vpn/txt/ss.txt vpn/txt/vpn.txt vpn/txt/fast.txt  vpn/txt/more.txt || true
+      run: rm vpn/txt/trojan.txt vpn/txt/ss.txt vpn/txt/vpn.txt vpn/txt/fast.txt vpn/txt/more.txt || true
 
       
     - name: 运行并输出结果v2    #很多节点，不太好用
