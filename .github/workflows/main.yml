@@ -24,6 +24,7 @@ jobs:
         # 例如: 
         pip install pyaes
         pip install requests
+        pip install bs4
 
     # - name: 运行py脚本
     #  run: python trojan.py > trojan.txt
