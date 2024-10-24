@@ -31,14 +31,6 @@ jobs:
     #    touch vpn/txt/vpn.txt
     #    touch vpn/txt/fast.txt
     #    touch vpn/txt/v2.txt
-        
-
-    - name: 运行并输出结果v2    #很多节点，不太好用
-      run: |
-        python vpn/py/v2.py > vpn/txt/v2.txt
-        python vpn/py/ss.py > vpn/txt/ss.txt
-        python vpn/py/trojan.py > vpn/txt/trojan.txt
-        
 
 
     - name: 删除vpn文件
@@ -46,6 +38,13 @@ jobs:
         rm -f vpn/txt/vpn.txt || ture
         rm -f vpn/txt/fast.txt || ture
         rm -f vpn/txt/v2.txt || ture
+        
+
+    - name: 运行并输出结果v2    #很多节点，不太好用
+      run: |
+        python vpn/py/v2.py > vpn/txt/v2.txt
+        python vpn/py/ss.py > vpn/txt/ss.txt
+        python vpn/py/trojan.py > vpn/txt/trojan.txt
 
         
     - name: 合并结果vpn
