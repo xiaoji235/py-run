@@ -50,7 +50,7 @@ jobs:
 
     # vpn节点最全，fast连通性测试最快（最少节点）
     - name: 合并结果vpn
-      run: cat ss.txt trojan.txt v2.txt > vpn/txt/vpn.txt
+      run: cat ss.txt trojan.txt vpn/txt/v2.txt > vpn/txt/vpn.txt
     - name: 合并结果fast
       run: cat ss.txt trojan.txt > vpn/txt/fast.txt
            
